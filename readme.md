@@ -1,91 +1,72 @@
 # Brewery-API
-
 [![Build Status](https://travis-ci.com/FonsecaGoncalo/Brewery-API.svg?token=pVvRG83cyxhvyBNvooAM&branch=main)](https://travis-ci.com/FonsecaGoncalo/Brewery-API)
 
-Brewery-API uses BreweryDB [![BreweryDB]](https://www.openbrewerydb.org/)
+Brewery-API uses [BreweryDB](https://www.openbrewerydb.org/)  to obtain information about breweries. It allows to:
 
+ - Get a Single Brewery by id
+ - List Breweries 
+ - Search Breweries
+ 
+ You can check the [Swagger](https://brewery.gfonseca.io/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config) for more information about each endpoint.
 
+Brewery-API uses the [OAuth 2.0 protocol](https://tools.ietf.org/html/rfc6749) (client credentials grant) for authentication and authorization. It's using [okta](https://developer.okta.com/docs/concepts/auth-servers/) as the authorization server.
 
-### Built With
-This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-* [Bootstrap](https://getbootstrap.com)
-* [JQuery](https://jquery.com)
-* [Laravel](https://laravel.com)
+The application is deployed using [AWS Elastic Beanstalk](https://aws.amazon.com/pt/elasticbeanstalk/) under the domain https://brewery.gfonseca.io.
 
-
-
-<!-- GETTING STARTED -->
-## Getting Started
-
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+## Tests
+- Units tests
+- Functional tests with [Wiremock](http://wiremock.org/)
+## Running Local
 
 ### Prerequisites
+ - Java 11
+ - Maven
+ - Docker
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
+Build Jar
 ```sh
-npm install npm@latest -g
+mvn clean intall
 ```
-
-### Installation
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+Build Docker Image
 ```sh
-git clone https://github.com/your_username_/Project-Name.git
+docker build . -t brewery-api
 ```
-3. Install NPM packages
+
+Run Application
 ```sh
-npm install
+docker run -p 8080:80 \
+  -e CLIENT_ID=<CLIENT_ID> \
+  -e CLIENT_SECRET=<CLIENT_SECRET> \
+  brewery-api
 ```
-4. Enter your API in `config.js`
-```JS
-const API_KEY = 'ENTER YOUR API';
+## Authentication
+
+To get an access token you need to make a request to the authentication server:
+```sh
+POST /oauth2/default/v1/token HTTP/1.1
+Host: dev-8089486.okta.com
+Accept: application/json
+Content-Type: application/x-www-form-urlencoded
+Authorization: Basic base64(<CLIENT_ID>:<CLIENT_SECRET>)
+
+grant_type=client_credentials&scope=read
+```
+The authorization server will respond with the following payload:
+```sh
+{
+    "token_type": "Bearer",
+    "expires_in": 600,
+    "access_token": <TOKEN>,
+    "scope": "read"
+}
 ```
 
+Then you need to add an `Authorization` header with token to all requests to the Brewery-API
 
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-
-
-<!-- ROADMAP -->
-## Roadmap
-
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a list of proposed features (and known issues).
-
-
-
-<!-- CONTRIBUTING -->
-## Contributing
-
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-
-
-<!-- LICENSE -->
+```sh
+GET /breweries/530 HTTP/1.1
+Host: brewery.gfonseca.io
+Authorization: Bearer <TOKEN>
+```
 ## License
-
-Distributed under the MIT License. See `LICENSE` for more information.
-
-
-
-<!-- CONTACT -->
-## Contact
-
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
-
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
-
+[MIT](https://choosealicense.com/licenses/mit/)
