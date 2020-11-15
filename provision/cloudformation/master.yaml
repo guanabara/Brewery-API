@@ -3,10 +3,6 @@ AWSTemplateFormatVersion: 2010-09-09
 Description: VPC + Elastic Beanstalk + Route 53
 
 Parameters:
-  TemplateBucket:
-    Type: String
-    Description: The template bucket for the CloudFormation templates
-
   EnvironmentName:
     Type: String
     Description: Environment name
@@ -140,8 +136,6 @@ Metadata:
         default: EC2 Key Pair
       LogRetentionInDays:
         default: Log Retention
-      TemplateBucket:
-        default: CloudFormation Bucket
       EnvironmentName:
         default: Environment
       SSLCertificateArn:
