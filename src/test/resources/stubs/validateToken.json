@@ -1,0 +1,12 @@
+{
+  "active": true,
+  "scope": "read",
+  "exp": 1605376925,
+  "iat": 1605376325,
+  "sub": "0oaprr0h6tSV2dC1x5d5",
+  "aud": "brewery-clients",
+  "iss": "https://localhost:8282/oauth2/default",
+  "jti": "AT.INRcfOOV2-sHbv9u9_sAPyMnp-bkI2jT_8XRboZ8Qtc",
+  "token_type": "Bearer",
+  "client_id": "client-id"
+}

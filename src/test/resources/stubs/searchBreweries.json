@@ -1,0 +1,40 @@
+[
+  {
+    "id": 5494,
+    "name": "MadTree Brewing",
+    "brewery_type": "regional",
+    "street": "3301 Madison Rd",
+    "address_2": null,
+    "address_3": null,
+    "city": "Cincinnati",
+    "county_province": null,
+    "state": "Ohio",
+    "postal_code": "45209-1132",
+    "country": "United States",
+    "longitude": "-84.4239715",
+    "latitude": "39.1563725",
+    "phone": "5138368733",
+    "website_url": "http://www.madtreebrewing.com",
+    "updated_at": "2018-08-24T15:44:22.281Z",
+    "created_at": "2018-08-23T23:24:11.758Z"
+  },
+  {
+    "id": 543,
+    "name": "Dry River Brewing",
+    "brewery_type": "micro",
+    "street": "671 S Anderson St",
+    "address_2": null,
+    "address_3": null,
+    "city": "Los Angeles",
+    "state": "California",
+    "county_province": null,
+    "postal_code": "90023-1110",
+    "country": "United States",
+    "longitude": "-118.223301521739",
+    "latitude": "34.0363873913043",
+    "phone": "2133755235",
+    "website_url": "http://www.dryriverbrewing.com",
+    "updated_at": "2018-08-23T23:27:38.017Z",
+    "created_at": "2018-07-24T01:32:54.647Z"
+  }
+]
