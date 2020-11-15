@@ -1,0 +1,42 @@
+[
+  {
+    "ParameterKey": "DomainName",
+    "ParameterValue": "brewery.gfonseca.io"
+  },
+  {
+    "ParameterKey": "AvailabilityZone1",
+    "ParameterValue": "us-east-1a"
+  },
+  {
+    "ParameterKey": "AvailabilityZone2",
+    "ParameterValue": "us-east-1b"
+  },
+  {
+    "ParameterKey": "EnvironmentName",
+    "ParameterValue": "dev"
+  },
+  {
+    "ParameterKey": "AppS3Bucket",
+    "ParameterValue": "brewery-configuration"
+  },
+  {
+    "ParameterKey": "AppS3Key",
+    "ParameterValue": "config.zip"
+  },
+  {
+    "ParameterKey": "SolutionStackName",
+    "ParameterValue": "64bit Amazon Linux 2 v3.2.1 running Docker"
+  },
+  {
+    "ParameterKey": "InstanceType",
+    "ParameterValue": "t2.micro"
+  },
+  {
+    "ParameterKey": "SSLCertificateArn",
+    "ParameterValue": "arn:aws:acm:us-east-1:433743481407:certificate/e94861c1-983f-414b-bf52-010dea4fa803"
+  },
+  {
+    "ParameterKey": "ELBIngressPort",
+    "ParameterValue": "443"
+  }
+]
