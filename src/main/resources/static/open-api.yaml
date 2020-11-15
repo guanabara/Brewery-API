@@ -1,0 +1,152 @@
+openapi: 3.0.0
+info:
+  title: Brewery API
+  version: 0.0.1
+servers:
+  - url: https://brewery.gfonseca.io/
+
+paths:
+  /breweries/{id}:
+    get:
+      summary: Gets a single Brewery
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A Brewery id
+          schema:
+            type : string
+      security:
+        - oAuth2ClientCredentials: []
+      responses:
+        '200':    # status code
+          description: A brewery
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/brewery'
+        '404':
+          description: Brewery not found
+
+  /breweries/search:
+    get:
+      summary: Search for breweries based on a search term.
+      parameters:
+        - name: query
+          in: query
+          required: true
+          description: A search term, you can use underscores or url encoding for spaces.
+          schema:
+            type : string
+      security:
+        - oAuth2ClientCredentials: []
+      responses:
+        '200':    # status code
+          description: A JSON array of breweries
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/brewery'
+  /breweries:
+    get:
+      summary: List breweries
+      parameters:
+        - name: name
+          in: query
+          description: name, you can use underscores or url encoding for spaces.
+          schema:
+            type : string
+        - name: state
+          in: query
+          description: state, you can use underscores or url encoding for spaces.
+          schema:
+            type : string
+        - name: postal
+          in: query
+          description: postal, should respect the pattern \d{5}(?:[-_]\d{4})?
+          schema:
+            type: string
+            pattern: \d{5}(?:[-_]\d{4})?
+        - name: type
+          in: query
+          description: type of brewery
+          schema:
+            type: string
+            enum: [contract,bar,proprietor,brewpub,large,planning,regional.micro,nano,closed]
+        - name: page
+          in: query
+          description: page
+          schema:
+            type: integer
+        - name: pageSize
+          in: query
+          description: pageSize - max 50
+          schema:
+            type: integer
+            maximum: 50
+        - name: sort
+          in: query
+          description: 'Sort the results by one or more fields. (-) for decending order, url encoded (+) for ascending order. Exemple: %2Btype,-name'
+          schema:
+            type: string
+      security:
+        - oAuth2ClientCredentials: []
+      responses:
+        '200':    # status code
+          description: A JSON array of breweries
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/brewery'
+components:
+  securitySchemes:
+    oAuth2ClientCredentials:
+      type: oauth2
+      description: See http://developers.gettyimages.com/api/docs/v3/oauth2.html
+      flows:
+        clientCredentials:
+          tokenUrl: https://dev-8089486.okta.com/oauth2/default/v1/token
+          scopes:
+            read: .
+  schemas:
+    brewery:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        breweryType:
+          type: string
+        street:
+          type: string
+        address2:
+          type: string
+        address3:
+          type: string
+        city:
+          type: string
+        countyProvince:
+          type: string
+        state:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+        longitude:
+          type: string
+        latitude:
+          type: string
+        phone:
+          type: string
+        websiteUrl:
+          type: string
+        updatedAt:
+          type: string
+        createdAt:
+          type: string

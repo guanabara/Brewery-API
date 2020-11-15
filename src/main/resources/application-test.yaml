@@ -1,0 +1,20 @@
+server:
+  port: 8080
+  error:
+    whitelabel:
+      enabled: false
+security:
+  oauth2:
+    client:
+      clientId: client-id
+      clientSecret: secret-id
+    resource:
+      tokenInfoUri: http://localhost:8282/v1/introspect
+brewerydb:
+  client:
+    protocol: http
+    host: localhost:8282
+    connectTimeout: 30000
+    readTimeout: 240000
+    connections:
+      poolSize: 10
