@@ -1,4 +1,4 @@
-# Brewery-API
+# Brewery-API 🍺
 [![Build Status](https://travis-ci.com/FonsecaGoncalo/Brewery-API.svg?token=pVvRG83cyxhvyBNvooAM&branch=main)](https://travis-ci.com/FonsecaGoncalo/Brewery-API)
 
 Brewery-API uses [BreweryDB](https://www.openbrewerydb.org/)  to obtain information about breweries. It allows to:
@@ -68,5 +68,11 @@ GET /breweries/530 HTTP/1.1
 Host: brewery.gfonseca.io
 Authorization: Bearer <TOKEN>
 ```
+
+## Postman
+To more easily test the api you can import the [postman collection](postman/Brewery.postman_collection.json) into postman and define the variables {{client_id}} and {{client_secret}}. This collection, after the `Get Token` request automatically adds the token to the other requests.
+
+
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
