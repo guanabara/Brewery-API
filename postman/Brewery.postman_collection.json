@@ -1,0 +1,237 @@
+{
+	"info": {
+		"_postman_id": "58d5bedb-fd64-4df2-8ee3-6ad5f149bde2",
+		"name": "Brewery",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "51aae16b-502d-42b5-999d-e8eb0b2385f0",
+						"exec": [
+							"var accessToken = JSON.parse(responseBody).access_token;",
+							"postman.setEnvironmentVariable(\"access_token\", accessToken);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{client_secret}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{client_id}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "read",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://dev-8089486.okta.com/oauth2/default/v1/token",
+					"protocol": "https",
+					"host": [
+						"dev-8089486",
+						"okta",
+						"com"
+					],
+					"path": [
+						"oauth2",
+						"default",
+						"v1",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a Single Brewery",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					},
+					{
+						"key": "Connection",
+						"value": "close",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "https://brewery.gfonseca.io/breweries/123",
+					"protocol": "https",
+					"host": [
+						"brewery",
+						"gfonseca",
+						"io"
+					],
+					"path": [
+						"breweries",
+						"123"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Breweries",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://brewery.gfonseca.io/breweries/search?query={{query}}",
+					"protocol": "https",
+					"host": [
+						"brewery",
+						"gfonseca",
+						"io"
+					],
+					"path": [
+						"breweries",
+						"search"
+					],
+					"query": [
+						{
+							"key": "query",
+							"value": "{{query}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ListBreweries",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/breweries",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"breweries"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "state",
+							"value": null,
+							"disabled": true
+						},
+						{
+							"key": "postal",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "type",
+							"value": null,
+							"disabled": true
+						},
+						{
+							"key": "page",
+							"value": null,
+							"disabled": true
+						},
+						{
+							"key": "pageSize",
+							"value": null,
+							"disabled": true
+						},
+						{
+							"key": "sort",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "da650fa4-2104-40c6-bd37-9a4dfc532f47",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "38229db4-daad-42b6-9bed-481dc61c6606",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
