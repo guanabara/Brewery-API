@@ -160,7 +160,7 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8080/breweries",
+					"raw": "https://brewery.gfonseca.io/breweries",
 					"protocol": "http",
 					"host": [
 						"localhost"
