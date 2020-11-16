@@ -160,21 +160,17 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8080/breweries",
-					"protocol": "http",
+					"raw": "https://brewery.gfonseca.io/breweries",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"brewery",
+						"gfonseca",
+						"io"
 					],
-					"port": "8080",
 					"path": [
 						"breweries"
 					],
 					"query": [
-						{
-							"key": "name",
-							"value": "",
-							"disabled": true
-						},
 						{
 							"key": "state",
 							"value": null,
