@@ -41,7 +41,7 @@ docker run -p 8080:80 \
 ```
 ## Authentication
 
-To get an access token you need to make a request to the authentication server:
+To get an access token you need to make a request to the authorization server:
 ```sh
 POST /oauth2/default/v1/token HTTP/1.1
 Host: dev-8089486.okta.com
