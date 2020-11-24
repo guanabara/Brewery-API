@@ -41,4 +41,10 @@ public class BreweryController {
     public ResponseEntity<List<BreweryDTO>> listBreweries(@Valid BreweriesFilter breweriesFilter) {
         return ResponseEntity.ok(breweryService.listBreweries(breweriesFilter));
     }
+
+    @GetMapping("/hello")
+    @PreAuthorize("#oauth2.hasScope('read')")
+    public ResponseEntity<String> hello() {
+        return ResponseEntity.ok("hello Daniel");
+    }
 }
