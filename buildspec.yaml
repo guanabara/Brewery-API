@@ -1,0 +1,12 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-version:
+      java: coreto11
+  build:
+    commands:
+      - mvn -B -DskipTests clean package
+  cache:
+    paths:
+      - '.m2/'
