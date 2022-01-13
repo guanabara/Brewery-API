@@ -14,19 +14,32 @@ jobs:
       - run:
           name: Test
           command: mvn test
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+  build-and-push-image:
+    docker:
+      - image: cimg/openjdk:11.0
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: .
+      - aws-ecr/build-and-push-image:
+          account-url: AWS_ECR_ACCOUNT_URL
+          aws-access-key-id: ACCESS_KEY_ID
+          aws-secret-access-key: SECRET_ACCESS_KEY
+          checkout: false
+          create-repo: true
+          repo: AWS_ECR_REPOSITORY_NAME
+          tag: 'latest,circleci'
+          region: AWS_REGION
+          no-output-timeout: 20m
+
 workflows:
   ci-flow:
     jobs:
       - build-and-test
-      - aws-ecr/build-and-push-image
-        requires:
-          - build-and-test
-        account-url: AWS_ECR_ACCOUNT_URL
-        aws-access-key-id: ACCESS_KEY_ID
-        aws-secret-access-key: SECRET_ACCESS_KEY
-        checkout: false
-        create-repo: true
-        repo: AWS_ECR_REPOSITORY_NAME
-        tag: 'latest,circleci'
-        region: AWS_REGION
-        no-output-timeout: 20m
+      - build-and-push-image:
+          requires:
+            - build-and-test
