@@ -4,9 +4,15 @@ phases:
   install:
     runtime-version:
       java: coreto11
-  build:
+  pre_build:
     commands:
       - mvn -B -DskipTests clean package
+  build:
+    commands:
+      - mvn test
+  post_build:
+    - echo finished building
+
 cache:
   paths:
     - '.m2/'
