@@ -34,7 +34,8 @@ jobs:
           repo: 'nunoteixeira'
           tag: 'latest,circleci'
           region: AWS_REGION
-          no-output-timeout: 20m
+          no-output-timeout: 10m
+          setup-remote-docker: true
 
 workflows:
   ci-flow:
