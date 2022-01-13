@@ -16,4 +16,8 @@ phases:
 
 cache:
   paths:
-    - '.m2/'
+    - '.m2/*'
+
+artifacts:
+  files:
+    - targte/brewery-api-0.0.1-SNAPSHOT.jar
