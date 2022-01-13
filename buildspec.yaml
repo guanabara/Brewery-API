@@ -11,7 +11,8 @@ phases:
     commands:
       - mvn test
   post_build:
-    - echo finished building
+    commands:
+      - echo finished building
 
 cache:
   paths:
