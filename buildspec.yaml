@@ -7,6 +7,6 @@ phases:
   build:
     commands:
       - mvn -B -DskipTests clean package
-  cache:
-    paths:
-      - '.m2/'
+cache:
+  paths:
+    - '.m2/'
